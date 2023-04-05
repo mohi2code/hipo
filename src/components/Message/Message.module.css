@@ -1,0 +1,19 @@
+.message {
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+  padding: 1.25rem;
+  border-radius: .25rem;
+  width: 100%;
+  max-width: 344px;
+}
+
+.message.error {
+  background-color: #842323;
+  border: 1px solid #CB7474;
+}
+
+.message p {
+  font-size: 14px;
+  font-weight: 500;
+}

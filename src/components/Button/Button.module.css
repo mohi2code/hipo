@@ -1,0 +1,19 @@
+.button {
+  cursor: pointer;
+  padding: .8rem .5rem;
+  border-radius: .25rem;
+  outline: none;
+  font-weight: 500;
+}
+
+.button.default {
+  background-color: var(--text-white);
+  border: 1px solid var(--text-white);
+  color: #000;
+  transition: all .2s ease;
+}
+
+.button.default:hover {
+  background-color: var(--background);
+  color: var(--text-white);
+}

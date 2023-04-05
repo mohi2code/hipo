@@ -1,0 +1,21 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.page h1 {
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.page form {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 304px;
+  width: 304px;
+  gap: 1rem;
+}

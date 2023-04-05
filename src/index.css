@@ -10,6 +10,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Roboto Mono', source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
 
 #root {
@@ -28,7 +30,7 @@ body {
   color: var(--text-white);
 }
 
-code {
-  font-family: 'Roboto Mono', source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+a {
+  color: inherit;
+  text-decoration: none;
 }
