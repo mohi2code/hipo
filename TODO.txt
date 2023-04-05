@@ -1,0 +1,9 @@
+- Basically there is two screens.
+- Main screen / Profile search screen.
+- And profile repos screen.
+
+
+-------5/4/2023------
+[x] Setup react-router, global.css and basic stuff.
+[ ] Splash screen animation. Changing color background.
+[ ] Search form and CTA button, so users don't get confused.

@@ -1,0 +1,11 @@
+React specific Requirements:
+  - I need a router. React Router DOM.
+  - I need something for API calls. fetch api.
+  - I need something for caching. Two options, Local storage (HDD) or react custom hooks (RAM).
+  - Custom components.
+  - I need something for small Animations. Framer-Motion
+
+Edge Use Cases:
+  - Profile Not found.
+  - Error happended with the API request.
+
