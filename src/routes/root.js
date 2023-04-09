@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { AnimatedHipoLogo } from '../components/Hipo'
+import { AnimatedHipoLogo, HipoLogo } from '../components/Hipo'
 import styles from '../styles/Root.module.css';
 import Input from '../components/Input';
 import Button from '../components/Button';
@@ -9,26 +9,35 @@ import MessageContainer from '../components/Message';
 import useMessage from '../hooks/messageApi';
 
 export default function Root() {
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
   return (
     <main className={styles['page']}>
-      <AnimatedHipoLogo />
-      <Header />
-      <Form />
+      {
+        searchParams.get("animation") === 'false' 
+        ? 
+        <HipoLogo/>
+        : 
+        <AnimatedHipoLogo /> 
+      }
+      <Header isAnimated={searchParams.get("animation") !== 'false'} />
+      <Form isAnimated={searchParams.get("animation") !== 'false'} />
     </main>
   );
 }
 
-const Header = () => (
+const Header = ({ isAnimated }) => (
   <motion.h1
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={transition}
+    initial={isAnimated ? { opacity: 0, y: 20 } : {}}
+    animate={isAnimated ? { opacity: 1, y: 0 }: {}}
+    transition={isAnimated ? transition : {}}
   >
     Github Profile Explorer
   </motion.h1>
 )
 
-const Form = () => {
+const Form = ({ isAnimated }) => {
 
   const navigate = useNavigate();
 
@@ -54,9 +63,9 @@ const Form = () => {
   return (
     <motion.form
       onSubmit={onSubmit}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={transition}
+      initial={isAnimated && { opacity: 0, y: 20 }}
+      animate={isAnimated && { opacity: 1, y: 0 }}
+      transition={isAnimated && transition}
     >
       <Input type="text" placeholder="Type @username"  value={username} onChange={onChange} />
       <Button>Search</Button>

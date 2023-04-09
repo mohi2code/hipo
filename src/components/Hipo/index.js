@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-const HipoLogo = (props) => (
+export const HipoLogo = (props) => (
   <svg
     width={104}
     height={52}
@@ -37,5 +37,3 @@ export const AnimatedHipoLogo = (props) => (
     />
   </svg>
 );
-
-export default HipoLogo;

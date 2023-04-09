@@ -41,7 +41,7 @@ export default function Repos() {
 
   return (
     <main className={styles['container']}>
-      <Button onClick={() => navigate('/')} type="link" style={{marginBottom: '3rem', marginRight: 'auto', width: 'fit-content'}}>&lt; Back to search</Button>
+      <Button onClick={() => navigate('/?animation=false')} type="link" style={{marginBottom: '3rem', marginRight: 'auto', width: 'fit-content'}}>&lt; Back to search</Button>
       { fetchProfile.isLoading ? <ProfileSkeleton /> : <ProfileContainer data={fetchProfile.data && fetchProfile.data.data} /> }
       { 
         fetchProfile.isLoading 
