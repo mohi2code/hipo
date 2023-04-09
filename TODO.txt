@@ -20,4 +20,4 @@
 -------9/4/2023-------
 [x] Profile component.
 [x] Repos component.
-[ ] Load more button.
+[x] Load more button.
