@@ -52,7 +52,7 @@ export function useFetchRepos() {
     try {
       setIsLoading(true);
       const response = await octokit.request('GET ' + (url ? url : `/users/${username}/repos`), {
-        per_page: 3
+        per_page: 2
       });
 
       const parsedData = parseData(response.data);

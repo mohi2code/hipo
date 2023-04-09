@@ -44,7 +44,7 @@ export default function Repos() {
       <Button onClick={() => navigate('/')} type="link" style={{marginBottom: '3rem', marginRight: 'auto', width: 'fit-content'}}>&lt; Back to search</Button>
       { fetchProfile.isLoading ? <ProfileSkeleton /> : <ProfileContainer data={fetchProfile.data && fetchProfile.data.data} /> }
       { 
-        fetchRepos.isLoading 
+        fetchProfile.isLoading 
         ? 
         <ReposSkeleton /> 
         : 
@@ -52,6 +52,15 @@ export default function Repos() {
           {fetchRepos.data.map(repo => <Repository key={repo.id} data={repo} />)}
         </ReposContainer>
       }
+      { !fetchProfile.isLoading && (
+        <Button 
+          onClick={loadMore} 
+          type="primary"
+          disabled={!fetchRepos.remaining || fetchRepos.isLoading}
+        >
+          { fetchRepos.isLoading ? 'Loading...': 'Load More' }
+        </Button>
+      )}
     </main>
   );
 }
