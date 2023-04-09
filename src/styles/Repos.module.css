@@ -3,6 +3,7 @@
   display: grid;
   grid-template-columns: 1fr;
   row-gap: 2rem;
+  /* justify-items: center; */
   padding-top: 1rem;
   padding-bottom: 2rem;
 }
@@ -12,6 +13,7 @@
   .container {
     width: 100%;
     padding: 0 .65rem;
+    padding-bottom: 2.5rem;
   }
 }
 

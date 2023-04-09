@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useFetchProfile, useFetchRepos } from "../api";
 import styles from '../styles/Repos.module.css';
@@ -8,6 +8,7 @@ import { ProfileContainer, ReposContainer, Repository } from "../components/Prof
 
 export default function Repos() {
 
+  const scrollBottom = useRef(null);
   let { username } = useParams();
   const navigate = useNavigate();
   const [profile, setProfile] = useState(null);
@@ -39,6 +40,10 @@ export default function Repos() {
     .catch(error => console.log(error));
   }, [profile, fetchRepos]);
 
+  useEffect(() => {
+    scrollBottom.current?.scrollIntoView({behavior: 'smooth'});
+  }, [fetchRepos]);
+
   return (
     <main className={styles['container']}>
       <Button onClick={() => navigate('/?animation=false')} type="link" style={{marginBottom: '3rem', marginRight: 'auto', width: 'fit-content'}}>&lt; Back to search</Button>
@@ -61,6 +66,8 @@ export default function Repos() {
           { fetchRepos.isLoading ? 'Loading...': 'Load More' }
         </Button>
       )}
+
+      <div ref={scrollBottom}></div>
     </main>
   );
 }
