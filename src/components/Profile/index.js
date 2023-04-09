@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import styles from './Profile.module.css';
 
 export const ProfileContainer = ({ data }) => (
@@ -37,7 +38,7 @@ export const ReposContainer = ({ children }) => (
 )
 
 export const Repository = ({ data }) => (
-  <a target="_blank" rel="noopener noreferrer" href={data && data.html_url} className={styles['repository']}>
+  <motion.a initial={initial} animate={animate} target="_blank" rel="noopener noreferrer" href={data && data.html_url} className={styles['repository']}>
     <div className={styles['repository__desc']}>
       <p>{data && data.name}</p>
       <p>{data && data.description}</p>
@@ -46,7 +47,7 @@ export const Repository = ({ data }) => (
       <p>{data && data.stargazers_count}</p>
       <p>Stars</p>
     </div>
-  </a>
+  </motion.a>
 )
 
 const LinkIcon = (props) => (
@@ -58,3 +59,6 @@ const LinkIcon = (props) => (
 const kFormatter = (num) => {
   return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + 'K' : Math.sign(num) * Math.abs(num)
 }
+
+const initial = { opacity: 0, y: 20 }
+const animate = { opacity: 1, y: 0 }
