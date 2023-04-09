@@ -5,6 +5,8 @@ import styles from '../styles/Repos.module.css';
 import Button from '../components/Button';
 import { ProfileSkeleton, ReposSkeleton } from "../components/Skeleton";
 import { ProfileContainer, ReposContainer, Repository } from "../components/Profile";
+import useMessage from "../hooks/messageApi";
+import MessageContainer from "../components/Message";
 
 export default function Repos() {
 
@@ -15,11 +17,17 @@ export default function Repos() {
 
   const fetchProfile = useFetchProfile();
   const fetchRepos   = useFetchRepos();
+  const context = useMessage();
 
   useEffect(() => {
     fetchProfile.execute(username)
     .then(data => {setProfile(data.data); console.log(data);})
-    .catch(error => alert(`Error happened, Code - ${error.status}`));
+    .catch(error => {
+      if (error.status === 404) 
+        context.display({ text: `User not found!` });
+      else 
+        context.display({ text: `Couldn't load the user profile. Please try again` });
+    });
   }, [username]);
 
   useEffect(() => {
@@ -57,8 +65,9 @@ export default function Repos() {
           {fetchRepos.data.map(repo => <Repository key={repo.id} data={repo} />)}
         </ReposContainer>
       }
-      { !fetchProfile.isLoading && (
+      { !fetchProfile.isLoading && fetchProfile.data && (
         <Button 
+          style={{ height: 'fit-content' }}
           onClick={loadMore} 
           type="primary"
           disabled={!fetchRepos.remaining || fetchRepos.isLoading}
@@ -68,6 +77,8 @@ export default function Repos() {
       )}
 
       <div ref={scrollBottom}></div>
+
+      <MessageContainer context={context} />
     </main>
   );
 }

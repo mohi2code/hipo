@@ -1,9 +1,9 @@
 .container {
   max-width: 548px;
+  min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr;
   row-gap: 2rem;
-  /* justify-items: center; */
   padding-top: 1rem;
   padding-bottom: 2rem;
 }
