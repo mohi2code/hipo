@@ -4,6 +4,7 @@ import { useFetchProfile, useFetchRepos } from "../api";
 import styles from '../styles/Repos.module.css';
 import Button from '../components/Button';
 import { ProfileSkeleton, ReposSkeleton } from "../components/Skeleton";
+import { ProfileContainer, ReposContainer, Repository } from "../components/Profile";
 
 export default function Repos() {
 
@@ -40,9 +41,17 @@ export default function Repos() {
 
   return (
     <main className={styles['container']}>
-      <Button onClick={() => navigate('/')} type="link" style={{marginBottom: '3rem', width: 'fit-content'}}>&lt; Back to search</Button>
-      { fetchProfile.isLoading && <ProfileSkeleton /> }
-      { fetchRepos.isLoading && <ReposSkeleton /> }
+      <Button onClick={() => navigate('/')} type="link" style={{marginBottom: '3rem', marginRight: 'auto', width: 'fit-content'}}>&lt; Back to search</Button>
+      { fetchProfile.isLoading ? <ProfileSkeleton /> : <ProfileContainer data={fetchProfile.data && fetchProfile.data.data} /> }
+      { 
+        fetchRepos.isLoading 
+        ? 
+        <ReposSkeleton /> 
+        : 
+        <ReposContainer>
+          {fetchRepos.data.map(repo => <Repository key={repo.id} data={repo} />)}
+        </ReposContainer>
+      }
     </main>
   );
 }

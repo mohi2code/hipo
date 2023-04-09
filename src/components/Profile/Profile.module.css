@@ -1,0 +1,158 @@
+.profile {
+  position: relative;
+  background-color: #0A0A0A;
+  border-radius: .25rem;
+  border: 1px solid #292929;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  row-gap: 2rem;
+  padding: 3rem 1.5rem;
+  padding-top: 66px;
+}
+
+.profile-img {
+  position: absolute;
+  top: -66px;
+  background-color: #222222;
+  border-radius: 50%;
+  border: none;
+  width: 112px;
+  height: 112px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* background-image: url("https://avatars.githubusercontent.com/u/55515180?v=4"); */
+}
+
+.profile-link {
+  position: absolute;
+  right: 1.5rem;
+  top: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+  cursor: pointer;
+  font-size: 14px;
+  color: #E5E5E5;
+}
+
+.profile-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-name h1:first-child {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.profile h1:last-child {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.profile-stats {
+  display: flex;
+  gap: 5rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .25rem;
+}
+
+.stat-num {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.stat-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-gray);
+}
+
+.repos-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 1rem;
+}
+
+.repos-container h1 {
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.repository {
+  background-color: #0A0A0A;
+  border-radius: .25rem;
+  border: 1px solid #292929;
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  padding: 1.5rem;
+  transition: all .2s ease;
+}
+
+.repository:hover {
+  background-color: #FFFFFF;
+}
+
+.repository:hover .repository__desc p:first-child {
+  color: #0A0A0A;
+}
+
+.repository:hover .repository__stats P:first-child {
+  color: #0A0A0A;
+}
+
+.repository__desc {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+}
+
+.repository__desc p {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.repository__desc p:last-child {
+  color: var(--text-gray);
+  text-overflow: ellipsis;
+  overflow: hidden; 
+  width: 300px; 
+  white-space: nowrap;
+}
+
+.repository__stats {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+}
+
+.repository__stats p {
+  font-size: 18px;
+  font-weight: 500;
+  text-align: right;
+}
+
+.repository__stats p:last-child {
+  color: var(--text-gray);
+  font-size: 12px;
+}
+
+@media screen and (max-width: 576px) {
+  .profile-link {
+    font-size: 10px;
+  }
+
+  .profile-stats {
+    gap: 2rem;
+  }
+}
