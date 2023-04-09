@@ -1,11 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-
+import { useParams, useNavigate } from "react-router-dom";
 import { useFetchProfile, useFetchRepos } from "../api";
+import styles from '../styles/Repos.module.css';
+import Button from '../components/Button';
+import { ProfileSkeleton, ReposSkeleton } from "../components/Skeleton";
 
 export default function Repos() {
 
   let { username } = useParams();
+  const navigate = useNavigate();
   const [profile, setProfile] = useState(null);
 
   const fetchProfile = useFetchProfile();
@@ -36,9 +39,12 @@ export default function Repos() {
   }, [profile, fetchRepos]);
 
   return (
-    <>
-      <div>Retrieving all repos...</div>
-      <button onClick={loadMore}>load more...</button>
-    </>
+    <main className={styles['container']}>
+      <Button onClick={() => navigate('/')} type="link" style={{marginBottom: '3rem', width: 'fit-content'}}>&lt; Back to search</Button>
+      { fetchProfile.isLoading && <ProfileSkeleton /> }
+      { fetchRepos.isLoading && <ReposSkeleton /> }
+    </main>
   );
 }
+
+

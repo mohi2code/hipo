@@ -1,0 +1,37 @@
+.container {
+  max-width: 548px;
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+/******* Helpers ********/
+@media screen and (max-width: 576px) {
+  .container {
+    width: 100%;
+    padding: 0 .65rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 720px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .container {
+    width: 950px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .container {
+    width: 1100px;
+    margin: 0 auto;
+  }
+}
