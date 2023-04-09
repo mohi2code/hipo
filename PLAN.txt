@@ -8,6 +8,11 @@ React specific Requirements:
 Edge Use Cases:
   - User submitted an empty text field.
   - User didn't provide @ symbol in input text field.
-  - Profile Not found.
-  - Error happended with the API request.
+  - Profile Not found - 404.
+
+Github API Behavior:
+  - When entering an invalid username or non-existant one the response is 404, not found
+  - When a user doesn't have repos the response is 200 and data array is empty.
+  - When requesting repos with pagination you will recieve a link header that includes all the links, page_numbers, etc.
+  - Token: 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
 

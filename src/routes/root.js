@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { AnimatedHipoLogo } from '../components/Hipo'
 import styles from '../styles/Root.module.css';
@@ -29,6 +30,8 @@ const Header = () => (
 
 const Form = () => {
 
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState("");
   const context = useMessage();
 
@@ -44,8 +47,8 @@ const Form = () => {
       return;
     }
 
-    let _username = username[0] === '@' ? username : '@' + username;
-    alert(_username);
+    let _username = username[0] === '@' ? username.substring(1) : username;
+    navigate(`/profile/${_username}`);
   }
 
   return (

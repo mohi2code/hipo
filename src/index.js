@@ -5,6 +5,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 import Root from './routes/root';
+import Repos from './routes/repos';
 
 const router = createBrowserRouter([
   {
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
   },
   {
     path: "profile/:username",
-    element: <div>Fetching github profile data...</div>
+    element: <Repos />
   }
 ]);
 

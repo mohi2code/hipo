@@ -12,5 +12,6 @@
 
 
 -------6/4/2023------
-[ ] Github API docs.
-[ ] 
+[x] Github API docs.
+[x] Rest API and pagination functionality.
+[ ] Reducer and caching setup, using useReducer and ContextAPI.
