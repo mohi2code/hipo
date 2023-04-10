@@ -21,3 +21,9 @@
 [x] Profile component.
 [x] Repos component.
 [x] Load more button.
+
+
+-------x/4/2023-------
+[ ] Caching functionality. ContextAPI.
+[x] No result / empty repos design.
+[ ] UnAuthorized request handling and apropriate message.

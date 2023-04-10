@@ -17,6 +17,7 @@ export const HipoLogo = (props) => (
 
 export const AnimatedHipoLogo = (props) => (
   <svg
+    style={{ overflow: 'visible' }}
     width={104}
     height={52}
     fill="none"

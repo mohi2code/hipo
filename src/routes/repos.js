@@ -4,7 +4,7 @@ import { useFetchProfile, useFetchRepos } from "../api";
 import styles from '../styles/Repos.module.css';
 import Button from '../components/Button';
 import { ProfileSkeleton, ReposSkeleton } from "../components/Skeleton";
-import { ProfileContainer, ReposContainer, Repository } from "../components/Profile";
+import { EmptyRepos, ProfileContainer, ReposContainer, Repository } from "../components/Profile";
 import useMessage from "../hooks/messageApi";
 import MessageContainer from "../components/Message";
 
@@ -62,7 +62,13 @@ export default function Repos() {
         <ReposSkeleton /> 
         : 
         <ReposContainer>
-          {fetchRepos.data.map(repo => <Repository key={repo.id} data={repo} />)}
+          {
+            fetchRepos.data.length !== 0
+            ? 
+            fetchRepos.data.map(repo => <Repository key={repo.id} data={repo} />)
+            :
+            <EmptyRepos />
+          }
         </ReposContainer>
       }
       { !fetchProfile.isLoading && fetchProfile.data && (
