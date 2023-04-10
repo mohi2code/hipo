@@ -44,7 +44,7 @@ export const Repository = ({ data }) => (
       <p>{data && data.description}</p>
     </div>
     <div className={styles['repository__stats']}>
-      <p>{data && data.stargazers_count}</p>
+      <p>{commaFormatter(data && data.stargazers_count)}</p>
       <p>Stars</p>
     </div>
   </motion.a>
@@ -64,6 +64,10 @@ const LinkIcon = (props) => (
 
 const kFormatter = (num) => {
   return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + 'K' : Math.sign(num) * Math.abs(num)
+}
+
+function commaFormatter(num) {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 const initial = { opacity: 0, y: 20 }
