@@ -23,7 +23,12 @@
 [x] Load more button.
 
 
--------x/4/2023-------
-[ ] Caching functionality. ContextAPI.
+-------11/4/2023-------
+[x] Caching functionality. ContextAPI. No need for ContextAPI. Done it by just using a Map data structure.
 [x] No result / empty repos design.
-[ ] UnAuthorized request handling and apropriate message.
+
+-------14/4/2023-------
+[ ] Documentation.
+[ ] README.md file.
+[ ] Deployment.
+[ ] Final Edits & Bug fixing if any.

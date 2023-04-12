@@ -71,4 +71,4 @@ function commaFormatter(num) {
 }
 
 const initial = { opacity: 0, y: 20 }
-const animate = { opacity: 1, y: 0 }
+const animate = { opacity: 1, y: 0, transition: { delay: .2 } }

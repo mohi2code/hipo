@@ -5,6 +5,8 @@ const octokit = new Octokit({
   auth: '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'
 });
 
+const userCache = new Map();
+
 export function useFetchProfile() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -12,12 +14,20 @@ export function useFetchProfile() {
 
   const execute = async (username) => {
     try {
+      if (userCache.get(username)) {
+        setData((userCache.get(username).profile));
+        console.log(`%c✨ Loading ${username} cached profile data from memory...`, "color:yellow; font-size: 12px;");
+        return (userCache.get(username)).profile;
+      }
+
       setIsLoading(true);
       const profile = await octokit.request('GET /users/{username}', {
         username: username,
       });
       setData(profile);
+      console.log(`%c🚀 Loading ${username} profile data from server... `, "color:yellow; font-size: 12px;");
       setIsLoading(false);
+      userCache.set(username, { profile });
       return profile;
     } catch (error) {
       setIsLoading(false);
@@ -57,6 +67,7 @@ export function useFetchRepos() {
 
       const parsedData = parseData(response.data);
       setData([...data, ...parsedData]);
+      console.log(`%c🚀🗂️ Loading ${username} repositories data from server...`, "color:yellow; font-size: 12px");
 
       const linkHeader = response.headers.link;
 
@@ -67,7 +78,7 @@ export function useFetchRepos() {
       }
 
       setIsLoading(false);
-      return [...data, ...parsedData];
+      return parsedData;
     } catch (error) {
       setIsLoading(false);
       setError(error);

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useFetchProfile, useFetchRepos } from "../api";
 import styles from '../styles/Repos.module.css';
@@ -13,40 +13,33 @@ export default function Repos() {
   const scrollBottom = useRef(null);
   let { username } = useParams();
   const navigate = useNavigate();
-  const [profile, setProfile] = useState(null);
-
+  
   const fetchProfile = useFetchProfile();
   const fetchRepos   = useFetchRepos();
   const context = useMessage();
 
   useEffect(() => {
-    fetchProfile.execute(username)
-    .then(data => {setProfile(data.data); console.log(data);})
-    .catch(error => {
-      if (error.status === 404) 
-        context.display({ text: `User not found!` });
-      else 
-        context.display({ text: `Couldn't load the user profile. Please try again` });
-    });
+    async function callAPIs() {
+      try {
+        const profile = (await fetchProfile.execute(username)).data;
+        await fetchRepos.execute(profile.login);
+      } catch (error) {
+        if (error.status === 404) 
+          context.display({ text: `User not found!` });
+        else 
+          context.display({ text: `Couldn't load the user profile. Please try again` });
+      }
+    }
+    callAPIs();
   }, [username]);
 
-  useEffect(() => {
-    if (!profile)
-      return;
-
-    fetchRepos.execute(profile.login)
-    .then(data => console.log(data))
-    .catch(error => console.log(error));
-  }, [profile]);
-
   const loadMore = useCallback(() => {
-    if (!profile)
+    if (!fetchProfile.data)
       return;
 
-    fetchRepos.execute(profile.login)
-    .then(data => console.log(fetchRepos.data))
+    fetchRepos.execute(fetchProfile.data.data.login)
     .catch(error => console.log(error));
-  }, [profile, fetchRepos]);
+  }, [fetchRepos, fetchProfile]);
 
   useEffect(() => {
     scrollBottom.current?.scrollIntoView({behavior: 'smooth'});
@@ -54,8 +47,16 @@ export default function Repos() {
 
   return (
     <main className={styles['container']}>
-      <Button onClick={() => navigate('/?animation=false')} type="link" style={{marginBottom: '3rem', marginRight: 'auto', width: 'fit-content'}}>&lt; Back to search</Button>
+      <Button 
+        onClick={() => navigate('/?animation=false')} 
+        type="link"
+        style={{marginBottom: '3rem', marginRight: 'auto', width: 'fit-content'}}
+      >
+        &lt; Back to search
+      </Button>
+
       { fetchProfile.isLoading ? <ProfileSkeleton /> : <ProfileContainer data={fetchProfile.data && fetchProfile.data.data} /> }
+      
       { 
         fetchProfile.isLoading 
         ? 
@@ -63,7 +64,7 @@ export default function Repos() {
         : 
         <ReposContainer>
           {
-            fetchRepos.data.length !== 0
+            fetchRepos.data.length !== 0 || fetchRepos.remaining
             ? 
             fetchRepos.data.map(repo => <Repository key={repo.id} data={repo} />)
             :
@@ -71,6 +72,7 @@ export default function Repos() {
           }
         </ReposContainer>
       }
+      
       { !fetchProfile.isLoading && fetchProfile.data && (
         <Button 
           style={{ height: 'fit-content' }}
