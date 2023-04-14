@@ -28,7 +28,6 @@
 [x] No result / empty repos design.
 
 -------14/4/2023-------
-[ ] Documentation.
 [ ] README.md file.
 [ ] Deployment.
-[ ] Final Edits & Bug fixing if any.
+[x] Final Edits & Bug fixing if any.

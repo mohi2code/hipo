@@ -11,7 +11,6 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
-    // errorElement: <div>Ooopss!!! looks like you are lost</div>
   },
   {
     path: "profile/:username",

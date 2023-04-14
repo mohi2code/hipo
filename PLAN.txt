@@ -15,4 +15,3 @@ Github API Behavior:
   - When a user doesn't have repos the response is 200 and data array is empty.
   - When requesting repos with pagination you will recieve a link header that includes all the links, page_numbers, etc.
   - Token: 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
-
