@@ -15,7 +15,7 @@ Simply a small react.js application that interacts with the 'Github' APIs, with 
 
 ## Demo
 
-Insert gif or link to demo
+Live demo: [https://6439b2c957a16c40b95f543c--rainbow-medovik-00a756.netlify.app](https://6439b2c957a16c40b95f543c--rainbow-medovik-00a756.netlify.app)
 
 ## How to run locally
 
