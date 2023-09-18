@@ -2,7 +2,7 @@ import { useState, useCallback } from "react"
 import { Octokit } from "@octokit/rest";
 
 const octokit = new Octokit({
-  auth: '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'
+  auth: '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'
 });
 
 const userCache = new Map();
@@ -53,9 +53,9 @@ export function useFetchRepos() {
 
   const [url, setURL] = useState('');
   const [remaining, setRemaining] = useState(true);
-  
 
-  const execute = async (username) => {  
+
+  const execute = async (username) => {
     if (!remaining)
       return;
 
@@ -110,6 +110,6 @@ function parseData(data) {
 
   const namespaceKey = Object.keys(data)[0];
   data = data[namespaceKey];
-  
+
   return data;
 }
