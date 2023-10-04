@@ -2,7 +2,7 @@ import { useState, useCallback } from "react"
 import { Octokit } from "@octokit/rest";
 
 const octokit = new Octokit({
-  auth: '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'
+  auth: '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'
 });
 
 const userCache = new Map();
